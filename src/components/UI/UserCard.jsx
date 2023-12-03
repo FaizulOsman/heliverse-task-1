@@ -1,9 +1,75 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../Shared/Modal";
+import { MdDeleteOutline } from "react-icons/md";
+import { useDeleteSingleDataMutation } from "../../redux/features/user/userApi";
+import toast from "react-hot-toast";
 
 const UserCard = ({ data, showViewProfileButton }) => {
+  const [deleteSingleData, { isSuccess, isError, error }] =
+    useDeleteSingleDataMutation();
+
+  const handleDeleteUser = (data) => {
+    deleteSingleData({ id: data?.id });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("User deleted successfully!");
+    }
+    if (isError) {
+      toast.error(error?.data?.message || "Something went wrong!");
+    }
+  }, [isSuccess, isError, error]);
+
   return (
-    <div className="max-w-x">
+    <div className="max-w-x relative">
+      <div className="absolute right-5 top-5">
+        <Modal
+          Button={
+            <MdDeleteOutline
+              className={`text-2xl border-none  text-red-500 hover:text-red-60`}
+            />
+          }
+          data={data}
+          modalBody={
+            <>
+              <h3 className="font-semibold text-md sm:text-lg text-white pb-5 text-center">
+                Do you want to delete:{" "}
+                <span className="text-red-500 font-bold">
+                  {data?.first_name} {data?.last_name}
+                </span>
+                ?
+              </h3>
+              <div className="py-4 text-center flex justify-around">
+                <button
+                  onClick={() => {
+                    handleDeleteUser(data);
+                    const modal = document.getElementById(data?.id);
+                    if (modal) {
+                      modal.close();
+                    }
+                  }}
+                  className="btn bg-blue-700 hover:bg-blue-500 px-2 py-[2px] rounded-md btn-xs sm:btn-sm text-white"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => {
+                    const modal = document.getElementById(data?.id);
+                    if (modal) {
+                      modal.close();
+                    }
+                  }}
+                  className="btn bg-red-700 hover:bg-red-500 px-2 py-[2px] rounded-md btn-xs sm:btn-sm text-white"
+                >
+                  No
+                </button>
+              </div>
+            </>
+          }
+        />
+      </div>
       <div className="bg-[#1d1836] shadow-xl rounded-lg py-3">
         <div className="photo-wrapper p-2">
           <img
