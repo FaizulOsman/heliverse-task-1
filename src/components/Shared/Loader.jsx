@@ -1,6 +1,8 @@
+import "./Loader.css";
+
 const Loader = () => {
   return (
-    <div className="text-center mx-auto">
+    <div className="mx-auto">
       <span className="loader"></span>
     </div>
   );
