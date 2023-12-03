@@ -85,7 +85,7 @@ const AllUsersWithCard = () => {
                   }}
                   className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
                 >
-                  <option>Select One</option>
+                  <option value="">Select One</option>
                   {allDomains?.map((data, index) => (
                     <option value={data?.domain} key={index}>
                       {data?.domain}
@@ -101,7 +101,7 @@ const AllUsersWithCard = () => {
                   }}
                   className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
                 >
-                  <option>Select One</option>
+                  <option value="">Select One</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Bigender">Bigender</option>
@@ -116,7 +116,7 @@ const AllUsersWithCard = () => {
                   }}
                   className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
                 >
-                  <option>Select One</option>
+                  <option value="">Select One</option>
                   <option value="true">True</option>
                   <option value="false">False</option>
                 </select>
