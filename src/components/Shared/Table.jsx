@@ -31,7 +31,7 @@ const Table = ({
             <div className="flex-grow bg-[#080925] overflow-y-auto">
               <div className="sm:p-7 p-4">
                 <div className="flex w-full items-center mb-7">
-                  <div className="flex items-center text-lg sm:text-2xl z-40 text-white border-l-4 pl-3">
+                  <div className="flex items-center text-lg sm:text-2xl z-40 text-green-500 border-l-4 pl-3">
                     {tableTitle}
                   </div>
                   <div className="ml-auto text-xs inline-flex items-center">
@@ -67,7 +67,9 @@ const Table = ({
                     {allData?.length > 0 ? (
                       <table className="w-full text-left">
                         <thead>
-                          <tr>{tableHeadData?.map((data) => data)}</tr>
+                          <tr className="font-bold text-blue-500">
+                            {tableHeadData?.map((data) => data)}
+                          </tr>
                           <tr className="font-normal border-b border-gray-800"></tr>
                         </thead>
                         <tbody>{tableBodyData?.map((data) => data)}</tbody>
