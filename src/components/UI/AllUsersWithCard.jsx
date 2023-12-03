@@ -9,15 +9,19 @@ const AllUsersWithCard = () => {
   const [limit, setLimit] = useState(20);
   const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterBy, setFilterBy] = useState("");
+  const [filterOrder, setFilterOrder] = useState("");
+  const [showFilterItem, setShowFilterItem] = useState(0);
 
   const { data: getAllUsers } = useGetAllDataQuery({
     limit,
     page,
     sortOrder,
     searchTerm,
+    filterBy,
+    filterOrder,
   });
 
-  console.log(getAllUsers?.meta);
   const totalPage = Math.ceil(
     parseInt(getAllUsers?.meta?.total) / parseInt(getAllUsers?.meta?.limit)
   );
@@ -28,18 +32,96 @@ const AllUsersWithCard = () => {
     }
   };
 
+  const allDomains = [];
+  getAllUsers?.data?.map((data) => {
+    if (allDomains?.length > 0) {
+      const isDomainExist = allDomains?.find(
+        (item) => item?.domain === data?.domain
+      );
+
+      if (!isDomainExist) {
+        allDomains.push(data);
+      }
+    } else {
+      allDomains.push(data);
+    }
+  });
+
   return (
     <>
       {getAllUsers?.data?.length > 0 ? (
         <div className="max-w-7xl mx-auto p-4 sm:p-10">
-          <div className="max-w-4xl text-center mb-7">
-            <input
-              class="bg-transparent shadow appearance-none border border-blue-500 rounded max-w-4xl py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-              id="search-input"
-              type="text"
-              placeholder="Search"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="flex flex-col sm:flex-row justify-between gap-4 mb-7">
+            <div className="max-w-7xl mx-auto sm:mx-0">
+              <input
+                class="bg-transparent shadow appearance-none border border-blue-500 rounded max-w-4xl py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+                id="search-input"
+                type="text"
+                placeholder="Search"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="max-w-7xl mx-auto sm:mx-0 flex gap-2">
+              <select
+                onChange={(e) => {
+                  setShowFilterItem(
+                    (e.target.value === "domain" && 1) ||
+                      (e.target.value === "gender" && 2) ||
+                      (e.target.value === "available" && 3)
+                  );
+                }}
+                className="select p-2 select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
+              >
+                <option>Filter by</option>
+                <option value="domain">Domain</option>
+                <option value="gender">Gender</option>
+                <option value="available">Availability</option>
+              </select>
+              {showFilterItem === 1 && (
+                <select
+                  onChange={(e) => {
+                    setFilterBy("domain");
+                    setFilterOrder(e.target.value);
+                  }}
+                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
+                >
+                  <option>Select One</option>
+                  {allDomains?.map((data, index) => (
+                    <option value={data?.domain} key={index}>
+                      {data?.domain}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {showFilterItem === 2 && (
+                <select
+                  onChange={(e) => {
+                    setFilterBy("gender");
+                    setFilterOrder(e.target.value);
+                  }}
+                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
+                >
+                  <option>Select One</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Bigender">Bigender</option>
+                  <option value="Agender">Agender</option>
+                </select>
+              )}
+              {showFilterItem === 3 && (
+                <select
+                  onChange={(e) => {
+                    setFilterBy("available");
+                    setFilterOrder(e.target.value);
+                  }}
+                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
+                >
+                  <option>Select One</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              )}
+            </div>
           </div>
           <div className="flex w-full items-center mb-7">
             <div className="flex items-center text-lg sm:text-2xl z-40 text-green-500 border-l-4 pl-3">
