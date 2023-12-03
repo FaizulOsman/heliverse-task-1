@@ -42,7 +42,7 @@ const Table = ({
                       className={`mr-3 inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
                         limit === 1
                           ? "opacity-50 cursor-not-allowed"
-                          : "border-gray-800"
+                          : "border-gray-500 text-gray-500"
                       } leading-none`}
                       disabled={limit === 1}
                     >
@@ -53,7 +53,7 @@ const Table = ({
                       className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
                         page === totalPage
                           ? "opacity-50 cursor-not-allowed"
-                          : "border-gray-800"
+                          : "border-gray-500 text-gray-500"
                       } leading-none`}
                       disabled={limit === parseInt(meta?.total)}
                     >
@@ -92,7 +92,7 @@ const Table = ({
                     className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
                       page === 1
                         ? "opacity-50 cursor-not-allowed"
-                        : "border-gray-800"
+                        : "border-gray-500 text-gray-500"
                     } leading-none`}
                     disabled={page === 1}
                   >
@@ -106,15 +106,15 @@ const Table = ({
                         onClick={() => handlePageChange(index + 1)}
                         className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
                           page === index + 1
-                            ? "bg-gray-800 border-gray-800"
-                            : "border-gray-800"
+                            ? "bg-green-600 text-white border-green-500"
+                            : "border-gray-500 text-gray-500"
                         } leading-none`}
                       >
                         {index + 1}
                       </button>
                     )
                   )}
-                  {page !== 6 && ". . ."}
+                  {page !== 6 && <span className="text-gray-500">. . .</span>}
                   {page >= 6 &&
                     Array.from(
                       { length: totalPage + 1 },
@@ -123,19 +123,21 @@ const Table = ({
                           <button
                             key={index}
                             onClick={() => handlePageChange(index + 1)}
-                            className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border bg-gray-800 border-gray-500 text-gray-500 leading-none`}
+                            className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border bg-green-600 text-white border-green-500`}
                           >
                             {index}
                           </button>
                         )
                     )}
-                  {page >= 6 && page !== totalPage && ". . ."}
+                  {page >= 6 && page !== totalPage && (
+                    <span className="text-gray-500">. . .</span>
+                  )}
                   <button
                     onClick={() => handlePageChange(page + 1)}
                     className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
                       page === totalPage
                         ? "opacity-50 cursor-not-allowed"
-                        : "border-gray-800"
+                        : "border-gray-500 text-gray-500"
                     } leading-none`}
                     disabled={page === totalPage}
                   >

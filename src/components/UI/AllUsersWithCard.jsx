@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGetAllDataQuery } from "../../redux/features/user/userApi";
-import { Link } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import UserCard from "./UserCard";
 
 const AllUsersWithCard = () => {
   const [page, setPage] = useState(1);
@@ -38,7 +38,9 @@ const AllUsersWithCard = () => {
           <button
             onClick={() => setLimit(limit - 1)}
             className={`mr-3 inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
-              limit === 1 ? "opacity-50 cursor-not-allowed" : "border-gray-800"
+              limit === 1
+                ? "opacity-50 cursor-not-allowed"
+                : "border-gray-500 text-gray-500"
             } leading-none`}
             disabled={limit === 1}
           >
@@ -49,7 +51,7 @@ const AllUsersWithCard = () => {
             className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
               page === totalPage
                 ? "opacity-50 cursor-not-allowed"
-                : "border-gray-800"
+                : "border-gray-500 text-gray-500"
             } leading-none`}
             disabled={limit === parseInt(getAllUsers?.meta?.total)}
           >
@@ -59,52 +61,7 @@ const AllUsersWithCard = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-4 justify-center">
         {getAllUsers?.data?.map((data, index) => (
-          <div key={index} className="max-w-x">
-            <div className="bg-[#1d1836] shadow-xl rounded-lg py-3">
-              <div className="photo-wrapper p-2">
-                <img
-                  className="w-24 h-24 rounded-full mx-auto"
-                  src={data?.avatar}
-                  alt="John Doe"
-                />
-              </div>
-              <div className="p-2">
-                <h3 className="text-center text-gray-400 text-xl font-medium leading-8">
-                  {data?.first_name} {data?.last_name}
-                </h3>
-                <div className="text-center text-gray-400 text-xs font-semibold">
-                  <p>{data?.domain}</p>
-                </div>
-                <table className="text-xs text-gray-500 my-3">
-                  <tbody>
-                    <tr>
-                      <td className="px-2 py-2 font-semibold">Gender</td>
-                      <td className="px-2 py-2">{data?.gender}</td>
-                    </tr>
-                    <tr>
-                      <td className="px-2 py-2 font-semibold">Email</td>
-                      <td className="px-2 py-2">{data?.email}</td>
-                    </tr>
-                    <tr>
-                      <td className="px-2 py-2 font-semibold">Available</td>
-                      <td className="px-2 py-2">
-                        {data?.available ? "Yes" : "No"}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <div className="text-center my-3">
-                  <Link
-                    className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
-                    to={`/${data?.id}`}
-                  >
-                    View Profile
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <UserCard key={index} data={data} showViewProfileButton={true} />
         ))}
       </div>
       <div className="flex flex-wrap w-full mt-5 gap-2 justify-end">
@@ -130,7 +87,7 @@ const AllUsersWithCard = () => {
             {index + 1}
           </button>
         ))}
-        {page !== 6 && ". . ."}
+        {page !== 6 && <span className="text-gray-500">. . .</span>}
         {page >= 6 &&
           Array.from(
             { length: totalPage + 1 },
@@ -145,7 +102,10 @@ const AllUsersWithCard = () => {
                 </button>
               )
           )}
-        {page >= 6 && page !== totalPage && ". . ."}
+        {page >= 6 && page !== totalPage && (
+          <span className="text-gray-500">. . .</span>
+        )}
+
         <button
           onClick={() => handlePageChange(page + 1)}
           className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
