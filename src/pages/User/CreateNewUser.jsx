@@ -27,6 +27,11 @@ const CreateNewUser = () => {
     };
 
     insertData(data);
+
+    e.target.first_name.value = "";
+    e.target.last_name.value = "";
+    e.target.email.value = "";
+    e.target.avatar.value = "";
   };
 
   useEffect(() => {
