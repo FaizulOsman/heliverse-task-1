@@ -26,7 +26,7 @@ const AllUsersWithCard = () => {
   };
 
   return (
-    <div className="p-4 sm:p-10">
+    <div className="max-w-7xl mx-auto p-4 sm:p-10">
       <div className="flex w-full items-center mb-7">
         <div className="flex items-center text-lg sm:text-2xl z-40 text-green-500 border-l-4 pl-3">
           Users ({getAllUsers?.meta?.total})

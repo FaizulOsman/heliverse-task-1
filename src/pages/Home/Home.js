@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import AllUsersWithTable from "../../components/UI/AllUsersWithTable";
 import AllUsersWithCard from "../../components/UI/AllUsersWithCard";
+import Navbar from "../../components/Shared/Navbar";
 
 const Home = () => {
   const [showData, setShowData] = useState(1);
 
   return (
     <div>
+      <Navbar />
       <h1 className="text-white text-center">All Users</h1>
       <div className="flex justify-center items-center pb-4">
         <div

@@ -23,7 +23,7 @@ const Table = ({
   };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className="bg-gray-100 text-white flex overflow-hidden text-sm">
         <div className="flex-grow overflow-hidden h-full flex flex-col">
           <div className="flex-grow flex overflow-x-hidden">
