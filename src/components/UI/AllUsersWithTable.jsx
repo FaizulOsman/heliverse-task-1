@@ -40,7 +40,7 @@ const AllUsersWithTable = () => {
       <div className="flex flex-col sm:flex-row justify-between gap-4 mb-7 p-4 sm:p-10">
         <div className="max-w-7xl mx-auto sm:mx-0">
           <input
-            class="bg-transparent shadow appearance-none border border-blue-500 rounded max-w-4xl py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+            className="bg-transparent shadow appearance-none border border-blue-500 rounded max-w-4xl py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
             id="search-input"
             type="text"
             placeholder="Search"
