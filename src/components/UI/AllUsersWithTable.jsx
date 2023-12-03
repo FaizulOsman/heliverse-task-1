@@ -17,8 +17,17 @@ const AllUsersWithTable = () => {
 
   return (
     <div>
+      <div className="max-w-4xl text-center mt-10">
+        <input
+          class="bg-transparent shadow appearance-none border border-blue-500 rounded max-w-4xl py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+          id="search-input"
+          type="text"
+          placeholder="Search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <Table
-        tableTitle={`All Users (${
+        tableTitle={`Users (${
           getAllUsers?.meta?.total ? getAllUsers?.meta?.total : 0
         })`}
         page={page}

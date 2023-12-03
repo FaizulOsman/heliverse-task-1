@@ -24,7 +24,7 @@ const Table = ({
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="bg-gray-100 text-white flex overflow-hidden text-sm">
+      <div className="bg-gray-100 text-gray-400 flex overflow-hidden text-sm">
         <div className="flex-grow overflow-hidden h-full flex flex-col">
           <div className="flex-grow flex overflow-x-hidden">
             <div className="flex-grow bg-[#080925] overflow-y-auto">
