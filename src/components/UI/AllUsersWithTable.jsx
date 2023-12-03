@@ -6,11 +6,13 @@ const AllUsersWithTable = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [sortOrder, setSortOrder] = useState("desc");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { data: getAllUsers } = useGetAllDataQuery({
     limit,
     page,
     sortOrder,
+    searchTerm,
   });
 
   return (

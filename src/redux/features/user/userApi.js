@@ -12,8 +12,8 @@ const userApi = api.injectEndpoints({
     }),
 
     getAllData: builder.query({
-      query: ({ limit, page, sortOrder }) => ({
-        url: `/users?limit=${limit}&page=${page}&sortOrder=${sortOrder}`,
+      query: ({ limit, page, sortOrder, searchTerm }) => ({
+        url: `/users?searchTerm=${searchTerm}&limit=${limit}&page=${page}&sortOrder=${sortOrder}`,
       }),
       providesTags: ["user"],
     }),

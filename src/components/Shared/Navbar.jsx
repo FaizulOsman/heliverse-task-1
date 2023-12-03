@@ -52,7 +52,9 @@ const Navbar = () => {
           </div>
           <div class="flex items-center justify-between">
             <div class="flex flex-shrink-0 items-center">
-              <img class="h-8 w-auto" src={TeamLogo} alt="Your Company" />
+              <Link to="/">
+                <img class="h-8 w-auto" src={TeamLogo} alt="Your Company" />
+              </Link>
             </div>
             {
               <div class="hidden sm:ml-6 sm:block">
