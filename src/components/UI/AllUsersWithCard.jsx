@@ -123,7 +123,7 @@ const AllUsersWithCard = () => {
             onClick={() => handlePageChange(index + 1)}
             className={`inline-flex items-center h-6 w-6 sm:h-8 sm:w-8 justify-center rounded-md shadow border border-gray-500 text-gray-500 ${
               page === index + 1
-                ? "bg-green-600 text-white border-green-500 border-gray-800"
+                ? "bg-green-600 text-white border-green-500"
                 : "border-gray-500"
             } leading-none`}
           >
