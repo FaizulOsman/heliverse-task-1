@@ -16,7 +16,6 @@ const Table = ({
 }) => {
   const totalPage = Math.ceil(parseInt(meta?.total) / parseInt(meta?.limit));
 
-  console.log(page);
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPage) {
       setPage(newPage);
