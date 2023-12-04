@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Navbar from "../../components/Shared/Navbar";
 import { useInsertDataMutation } from "../../redux/features/user/userApi";
 import toast from "react-hot-toast";
 
@@ -45,7 +44,6 @@ const CreateNewUser = () => {
 
   return (
     <div className="pb-20">
-      <Navbar />
       <div className="w-11/12 md:w-10/12 lg:w-8/12 mx-auto mt-5 border rounded-lg border-blue-500 p-5">
         <h3 className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-5">
           Create New User

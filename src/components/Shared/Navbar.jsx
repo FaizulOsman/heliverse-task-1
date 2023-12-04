@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import TeamLogo from "../../assets/team-logo.png";
 import { Link } from "react-router-dom";
+import { IoHomeOutline } from "react-icons/io5";
+import { MdAdd } from "react-icons/md";
+import { RiTeamLine } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -58,19 +62,40 @@ const Navbar = () => {
             </div>
             {
               <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
+                <div className="flex space-x-3">
                   <Link
                     to="/"
-                    className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    className="flex gap-2 items-center bg-gray-900 text-white hover:text-blue-500 rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
-                    Home
+                    <IoHomeOutline /> Home
+                  </Link>
+                  <Link
+                    to="/users"
+                    className="flex gap-2 items-center bg-gray-900 text-white hover:text-blue-500 rounded-md px-3 py-2 text-sm font-medium"
+                    aria-current="page"
+                  >
+                    <FaUsers /> Users
+                  </Link>
+                  <Link
+                    to="/teams"
+                    className="flex gap-2 items-center bg-gray-900 text-white hover:text-blue-500 rounded-md px-3 py-2 text-sm font-medium"
+                    aria-current="page"
+                  >
+                    <RiTeamLine /> Teams
                   </Link>
                   <Link
                     to="/users/create-new-user"
-                    className="bg-green-700 hover:bg-green-500 text-white rounded-md px-3 py-2 text-sm"
+                    className="flex gap-2 items-center bg-green-700 hover:bg-green-500 text-white rounded-md px-3 py-2 text-sm"
                   >
-                    <span className="font-bold">+</span> Create New User
+                    <MdAdd />
+                    Create User
+                  </Link>
+                  <Link
+                    to="/users/create-team"
+                    className="flex gap-2 items-center bg-green-700 hover:bg-green-500 text-white rounded-md px-3 py-2 text-sm"
+                  >
+                    <MdAdd /> Create Team
                   </Link>
                 </div>
               </div>
@@ -84,16 +109,37 @@ const Navbar = () => {
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
               to="/"
-              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+              className="flex gap-2 items-center hover:bg-gray-700 text-white hover:text-white rounded-md px-3 py-2 text-base font-medium"
               aria-current="page"
             >
-              Home
+              <IoHomeOutline /> Home
             </Link>
             <Link
-              to="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              to="/users"
+              className="flex gap-2 items-center hover:bg-gray-700 text-white hover:text-white rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
             >
-              Team
+              <FaUsers /> Users
+            </Link>
+            <Link
+              to="/teams"
+              className="flex gap-2 items-center hover:bg-gray-700 text-white hover:text-white rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
+            >
+              <RiTeamLine />
+              Teams
+            </Link>
+            <Link
+              to="/users/create-new-user"
+              className="flex gap-2 items-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium"
+            >
+              <MdAdd /> Create User
+            </Link>
+            <Link
+              to="/users/create-team"
+              className="flex gap-2 items-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium"
+            >
+              <MdAdd /> Create Team
             </Link>
           </div>
         </div>
