@@ -30,7 +30,7 @@ const Table = ({
             <div className="flex-grow bg-[#080925] overflow-y-auto">
               <div className="sm:py-7 py-4">
                 <div className="flex w-full items-center mb-7">
-                  <div className="flex items-center text-lg sm:text-2xl z-40 text-green-500 border-l-4 pl-3">
+                  <div className="flex items-center text-lg sm:text-2xl z-40 text-green-500 border-l-4 pl-0 sm:pl-2">
                     {tableTitle}
                   </div>
                   <div className="ml-auto text-xs inline-flex items-center">
