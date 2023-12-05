@@ -4,6 +4,7 @@ import Modal from "../Shared/Modal";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDeleteSingleDataMutation } from "../../redux/features/user/userApi";
 import toast from "react-hot-toast";
+import { FaRegEdit } from "react-icons/fa";
 
 const UserCard = ({ data, showViewProfileButton }) => {
   const [deleteSingleData, { isSuccess, isError, error }] =
@@ -24,6 +25,13 @@ const UserCard = ({ data, showViewProfileButton }) => {
 
   return (
     <div className="max-w-x relative">
+      <div className="absolute left-5 top-5">
+        <Link to={`/users/update/${data?.id}`}>
+          <FaRegEdit
+            className={`text-xl border-none  text-green-500 hover:text-red-60 cursor-pointer`}
+          />
+        </Link>
+      </div>
       <div className="absolute right-5 top-5">
         <Modal
           Button={
