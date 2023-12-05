@@ -17,11 +17,14 @@ const userApi = api.injectEndpoints({
         page,
         sortOrder,
         searchTerm,
-        filterBy,
-        filterOrder,
+        filterByDomain,
+        filterByGender,
+        filterByAvailability,
       }) => ({
         url: `/users?searchTerm=${searchTerm}&limit=${limit}&page=${page}&sortOrder=${sortOrder}&${
-          filterBy && filterOrder && `${filterBy}=${filterOrder}`
+          filterByDomain && `domain=${filterByDomain}`
+        }&${filterByGender && `gender=${filterByGender}`}&${
+          filterByAvailability && `available=${filterByAvailability}`
         }`,
       }),
       providesTags: ["user"],

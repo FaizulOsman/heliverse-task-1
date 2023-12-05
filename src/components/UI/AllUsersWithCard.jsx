@@ -9,17 +9,18 @@ const AllUsersWithCard = () => {
   const [limit, setLimit] = useState(20);
   const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterBy, setFilterBy] = useState("");
-  const [filterOrder, setFilterOrder] = useState("");
-  const [showFilterItem, setShowFilterItem] = useState(0);
+  const [filterByDomain, setFilterByDomain] = useState("");
+  const [filterByGender, setFilterByGender] = useState("");
+  const [filterByAvailability, setFilterByAvailability] = useState("");
 
   const { data: getAllUsers } = useGetAllDataQuery({
     limit,
     page,
     sortOrder,
     searchTerm,
-    filterBy,
-    filterOrder,
+    filterByDomain,
+    filterByGender,
+    filterByAvailability,
   });
 
   const totalPage = Math.ceil(
@@ -61,66 +62,50 @@ const AllUsersWithCard = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="max-w-7xl mx-auto sm:mx-0 flex gap-2">
+            <div className="max-w-7xl mx-auto sm:mx-0 flex flex-col gap-2">
               <select
                 onChange={(e) => {
-                  setShowFilterItem(
-                    (e.target.value === "domain" && 1) ||
-                      (e.target.value === "gender" && 2) ||
-                      (e.target.value === "available" && 3)
-                  );
+                  setFilterByDomain(e.target.value);
                 }}
-                className="select p-2 select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
+                className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925] py-2"
               >
-                <option>Filter by</option>
-                <option value="domain">Domain</option>
-                <option value="gender">Gender</option>
-                <option value="available">Availability</option>
+                <option value="">Domain</option>
+                <option value="Business Development">
+                  Business Development
+                </option>
+                <option value="Sales">Sales</option>
+                <option value="Finance">Finance</option>
+                <option value="Marketing">Marketing</option>
+                <option value="UI Designing">UI Designing</option>
+                <option value="Management">Management</option>
+                <option value="IT">IT</option>
               </select>
-              {showFilterItem === 1 && (
-                <select
-                  onChange={(e) => {
-                    setFilterBy("domain");
-                    setFilterOrder(e.target.value);
-                  }}
-                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
-                >
-                  <option value="">Select One</option>
-                  {allDomains?.map((data, index) => (
-                    <option value={data?.domain} key={index}>
-                      {data?.domain}
-                    </option>
-                  ))}
-                </select>
-              )}
-              {showFilterItem === 2 && (
-                <select
-                  onChange={(e) => {
-                    setFilterBy("gender");
-                    setFilterOrder(e.target.value);
-                  }}
-                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
-                >
-                  <option value="">Select One</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Bigender">Bigender</option>
-                  <option value="Agender">Agender</option>
-                </select>
-              )}
-              {showFilterItem === 3 && (
-                <select
-                  onChange={(e) => {
-                    setFilterBy("available");
-                    setFilterOrder(e.target.value);
-                  }}
-                  className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925]"
-                >
-                  <option value="">Select One</option>
-                  <option value="true">True</option>
-                  <option value="false">False</option>
-                </select>
-              )}
+              <select
+                onChange={(e) => {
+                  setFilterByGender(e.target.value);
+                }}
+                className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925] py-2"
+              >
+                <option value="">Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Bigender">Bigender</option>
+                <option value="Agender">Agender</option>
+                <option value="Polygender">Polygender</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Genderfluid">Genderfluid</option>
+                <option value="Genderqueer">Genderqueer</option>
+              </select>
+              <select
+                onChange={(e) => {
+                  setFilterByAvailability(e.target.value);
+                }}
+                className="select select-bordered border border-blue-500 rounded px-3 text-gray-400 font-normal select-xs sm:select-sm max-w-xs bg-[#080925] py-2"
+              >
+                <option value="">Availability</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
             </div>
           </div>
           <div className="flex w-full items-center mb-7">
