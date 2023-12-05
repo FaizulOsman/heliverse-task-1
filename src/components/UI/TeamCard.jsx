@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "../Shared/Modal";
 import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useDeleteSingleTeamMutation } from "../../redux/features/team/teamApi";
+import toast from "react-hot-toast";
 
 const TeamCard = ({ data, showViewTeamButton }) => {
   const [deleteSingleTeam, { isSuccess, isError, error }] =
@@ -11,6 +12,18 @@ const TeamCard = ({ data, showViewTeamButton }) => {
   const handleDeleteTeam = (data) => {
     deleteSingleTeam({ id: data?.id });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Team deleted successfully");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(error?.data?.message || "Something went wrong!");
+    }
+  }, [isError, error]);
 
   return (
     <div>

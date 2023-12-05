@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useGetAllTeamQuery } from "../../redux/features/team/teamApi";
 import TeamCard from "../../components/UI/TeamCard";
+import Loader from "../../components/Shared/Loader";
 
 const Team = () => {
   const [page, setPage] = useState(1);
@@ -18,15 +19,21 @@ const Team = () => {
     <div className="max-w-7xl mx-auto p-4 sm:p-10 mb-20">
       <h1 className="text-white text-center">All Teams</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
-        {getAllTeams?.data?.map((data, index) => (
-          <TeamCard
-            key={index}
-            data={data}
-            showViewTeamButton={showViewTeamButton}
-          />
-        ))}
-      </div>
+      {getAllTeams?.data ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
+          {getAllTeams?.data?.map((data, index) => (
+            <TeamCard
+              key={index}
+              data={data}
+              showViewTeamButton={showViewTeamButton}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="min-h-[30vh] flex items-center">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

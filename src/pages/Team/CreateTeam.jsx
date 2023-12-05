@@ -15,7 +15,6 @@ const CreateTeam = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterBy, setFilterBy] = useState("");
   const [filterOrder, setFilterOrder] = useState("");
-  console.log(selectedUser);
 
   const { data: getAllUsers } = useGetAllDataQuery({
     limit,
@@ -55,10 +54,14 @@ const CreateTeam = () => {
       team_name,
       users: selectedUser,
     };
+    if (selectedUser?.length > 0) {
+      createTeam(data);
 
-    createTeam(data);
-    e.target.team_name.value = "";
-    setSelectedUser([]);
+      e.target.team_name.value = "";
+      setSelectedUser([]);
+    } else {
+      toast.error("Please select at least one user to create a new team.");
+    }
   };
 
   useEffect(() => {
