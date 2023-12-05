@@ -7,6 +7,7 @@ import CreateTeam from "../pages/Team/CreateTeam";
 import Team from "../pages/Team/Team";
 import Users from "../pages/Users/Users";
 import MainLayout from "../layouts/MainLayout";
+import TeamDetails from "../pages/Team/TeamDetails";
 
 const Routers = () => {
   return (
@@ -16,6 +17,7 @@ const Routers = () => {
           <Route index element={<Home />} />
           <Route path="users" element={<Users />} />
           <Route path="teams" element={<Team />} />
+          <Route path="teams/:id" element={<TeamDetails />} />
           <Route path="users/:id" element={<SingleUser />} />
           <Route path="users/create-new-user" element={<CreateNewUser />} />
           <Route path="users/create-team" element={<CreateTeam />} />

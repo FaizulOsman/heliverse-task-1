@@ -8,7 +8,6 @@ const SingleUser = () => {
 
   const { data: getSingleUserData } = useGetSingleDataQuery({ id });
 
-  console.log(getSingleUserData);
   return (
     <>
       <div className="p-4 sm:p-10">

@@ -14,8 +14,6 @@ const Team = () => {
     searchTerm,
   });
 
-  console.log(getAllTeams);
-
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-10 mb-20">
       <h1 className="text-white text-center">All Teams</h1>
